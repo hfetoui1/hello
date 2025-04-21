@@ -33,6 +33,7 @@ return [
 
     'formats' => [
         'jsonld' => ['application/ld+json'],
+        'json' => ['application/json'],
         // 'jsonapi' => ['application/vnd.api+json'],
         // 'csv' => ['text/csv'],
     ],
