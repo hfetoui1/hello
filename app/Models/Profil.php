@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use ApiPlatform\Metadata\ApiResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\GetCollection;
@@ -13,12 +12,15 @@ use ApiPlatform\Metadata\Post;
 use App\Http\Controllers\ProfilController;
 use App\State\ProfilProvider;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Http\Requests\UpdateProfilRequest;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['read']],
     denormalizationContext: ['groups' => ['write']],
     operations: [
-        new Put(),
+        new Put(
+            rules:UpdateProfilRequest::class,
+        ),
         new Delete(),
         new Post(
             denormalizationContext: ['groups' => ['setimage']],

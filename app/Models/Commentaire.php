@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
+use App\Http\Requests\StoreCommentaireRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 #[ApiResource(
     operations: [
-        new Post(),
+        new Post(
+            rules:StoreCommentaireRequest::class,
+        ),
     ])
 ]
 
