@@ -31,7 +31,11 @@ use App\State\ProfilProvider;
             deserialize: false,
             write: false
         ),
-        new GetCollection(),
+        new GetCollection(
+            provider: ProfilProvider::class,
+            controller: ProfilController::class,
+            deserialize: false,
+        ),
     ]
 )]
 class Profil extends Model

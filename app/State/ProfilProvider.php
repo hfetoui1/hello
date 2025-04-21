@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProfilProvider implements ProviderInterface
 {
-    public function provide(\ApiPlatform\Metadata\Operation $operation, array $uriVariables = [], array $context = []): ?Profil
+    public function provide(\ApiPlatform\Metadata\Operation $operation, array $uriVariables = [], array $context = []): Profil|array|null
     {
         $id = $uriVariables['id'] ?? null;
         /** @var Request|null $request */
@@ -20,6 +20,14 @@ class ProfilProvider implements ProviderInterface
 
         $controller = new ProfilController();
 
-        return $controller->uploadImage($request,$id);
+
+        /** @var \ApiPlatform\Metadata\HttpOperation  $operation */
+        $method = $operation->getMethod();
+        if($method == 'POST'){
+            return $controller->uploadImage($request,$id);
+        }else{
+            return $controller->getProfils($request,$id)->toArray();
+        }
+        
     }
 }

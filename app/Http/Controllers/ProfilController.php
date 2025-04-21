@@ -31,4 +31,13 @@ class ProfilController extends Controller
     
         return $profil;
     }
+
+    public function getProfils($request , $id)
+    {
+        $profils = null;
+        if(null == $id){
+            $profils = Profil::where('statut','actif' )->get();
+        }
+        return $profils;
+    }
 }
