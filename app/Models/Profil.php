@@ -17,8 +17,20 @@ class Profil extends Model
     protected $fillable = [
         'nom',
         'prenom',
-        'administrateur',
+        'administrateur_id',
         'image',
         'statut',
     ];
+
+    public function administrateur()
+    {
+        return \App\Models\Administrateur::find($this->administrateur_id);
+    }
+
+    protected $hidden = ['commentaires'];
+
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class);
+    }
 }
