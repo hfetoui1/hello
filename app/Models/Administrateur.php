@@ -7,8 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use ApiPlatform\Metadata\ApiResource;
 
-#[ApiResource]
-
 class Administrateur extends Authenticatable
 {
     

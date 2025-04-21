@@ -12,13 +12,14 @@ use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Http\Controllers\ProfilController;
 use App\State\ProfilProvider;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource(
+    normalizationContext: ['groups' => ['read']],
+    denormalizationContext: ['groups' => ['write']],
     operations: [
-        new Get(),
         new Put(),
         new Delete(),
-        new Post(),
         new Post(
             denormalizationContext: ['groups' => ['setimage']],
             uriTemplate:'/profils/{id}/image',
@@ -52,6 +53,18 @@ class Profil extends Model
         'image',
         'statut',
     ];
+
+    #[Groups(['read','write'])]
+    public $nom;
+    #[Groups(['read','write'])]
+    public $prenom;
+    #[Groups(['read','write'])]
+    public $administrateur;
+    #[Groups(['read'])]
+    public $image;
+    #[Groups(['write'])]
+    public $statut;
+
 
     public function administrateur()
     {

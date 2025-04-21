@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Post;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Post(),
+    ])
+]
 
 class Commentaire extends Model
 {
